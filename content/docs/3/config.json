@@ -1,14 +1,14 @@
 [
   {
-    "version": "2.0.0",
+    "version": "3.0.0-alpha1",
     "menus": [
       {
         "title": "Getting Started",
         "subMenus": [
           {
-            "title": "What's New in ioFog 2?",
+            "title": "What's New in ioFog 3.0?",
             "entry": "./getting-started/whats-new.md",
-            "description": "List of features in ioFog 2 and their impact to users."
+            "description": "List of features in ioFog 3.0 and their impact to users."
           },
           {
             "title": "Core Concepts",
@@ -86,7 +86,7 @@
             "description": "Set up remote hosts to be accessible by iofogctl in order to deploy iofog Controller"
           },
           {
-            "title": "Remote - Deploy Control Plane",
+            "title": "Remote Host - Deploy Control Plane using iofogctl",
             "entry": "./platform-deployment/remote-control-plane.md",
             "description": "Deploy ioFog Controller"
           },
@@ -138,6 +138,16 @@
           {
             "title": "Docker Image Pruning",
             "entry": "./agent-management/docker-image-pruning.md",
+            "description": ""
+          },
+          {
+            "title": "Edge Resources",
+            "entry": "./agent-management/edge-resources.md",
+            "description": ""
+          },
+          {
+            "title": "Upgrade / Rollback",
+            "entry": "./agent-management/upgrade-rollback.md",
             "description": ""
           }
         ]
@@ -193,36 +203,41 @@
         ]
       },
       {
-        "title": "Microservice Management",
+        "title": "Applications Management",
         "subMenus": [
           {
-            "title": "Distributed Applications",
-            "entry": "./microservices/applications.md",
+            "title": "Introduction",
+            "entry": "./applications/introduction.md",
             "description": ""
           },
           {
             "title": "Microservice Public Ports",
-            "entry": "./microservices/microservice-exposing.md",
+            "entry": "./applications/microservice-exposing.md",
             "description": ""
           },
           {
             "title": "Move and Rename Microservices",
-            "entry": "./microservices/microservice-move-rename.md",
+            "entry": "./applications/microservice-move-rename.md",
             "description": ""
           },
           {
             "title": "Microservice Updates and Lifecycle",
-            "entry": "./microservices/microservice-lifecycle-management.md",
+            "entry": "./applications/microservice-lifecycle-management.md",
             "description": ""
           },
           {
             "title": "Microservice Registry and Catalog Management",
-            "entry": "./microservices/microservice-registry-catalog.md",
+            "entry": "./applications/microservice-registry-catalog.md",
+            "description": ""
+          },
+          {
+            "title": "Application templates",
+            "entry": "./applications/application-templates.md",
             "description": ""
           },
           {
             "title": "Microservice Logs",
-            "entry": "./microservices/microservice-logs.md",
+            "entry": "./applications/microservice-logs.md",
             "description": ""
           }
         ]
@@ -241,29 +256,44 @@
             "description": "iofogctl YAML structure and specifications for platform (Controller and Agent)"
           },
           {
-            "title": "Agent configuration YAML Specification",
+            "title": "Agent YAML Specification",
             "entry": "./reference-iofogctl/reference-agent.md",
             "description": "iofogctl YAML structure and specifications for configuring an ioFog Agent"
           },
           {
             "title": "Application YAML Specification",
             "entry": "./reference-iofogctl/reference-application.md",
-            "description": "iofogctl YAML structure and specification for deploying an Application Template"
+            "description": "iofogctl YAML structure and specification for deploying an application"
+          },
+          {
+            "title": "Application Template YAML Specification",
+            "entry": "./reference-iofogctl/reference-application-template.md",
+            "description": "iofogctl YAML structure and specification for deploying an application template"
           },
           {
             "title": "Route YAML Specification",
             "entry": "./reference-iofogctl/reference-route.md",
-            "description": "iofogctl YAML structure and specification for deploying a Route"
+            "description": "iofogctl YAML structure and specification for deploying a route"
           },
           {
             "title": "Catalog Item YAML Specification",
             "entry": "./reference-iofogctl/reference-catalog.md",
-            "description": "iofogctl YAML structure and specification for deploying a Catalog Item"
+            "description": "iofogctl YAML structure and specification for deploying a catalog item"
           },
           {
             "title": "Registry YAML Specification",
             "entry": "./reference-iofogctl/reference-registry.md",
-            "description": "iofogctl YAML structure and specification for deploying a Registry"
+            "description": "iofogctl YAML structure and specification for deploying a registry"
+          },
+          {
+            "title": "Edge Resources YAML Specification",
+            "entry": "./reference-iofogctl/reference-edge-resources.md",
+            "description": "iofogctl YAML structure and specification for deploying edge resources"
+          },
+          {
+            "title": "Template engine for ioFog YAML Specification",
+            "entry": "./reference-iofogctl/reference-template-engine.md",
+            "description": "ioFog template engine for parametric YAML specification"
           }
         ]
       },
@@ -309,6 +339,11 @@
             "title": "Agent Configurations",
             "entry": "./reference-agent/configuration.md",
             "description": "ioFog Agent Configurations"
+          },
+          {
+            "title": "Agent Logs",
+            "entry": "./reference-agent/agent-logs.md",
+            "description": "ioFog Agent Logs"
           },
           {
             "title": "Remote debugging using IntelliJ",

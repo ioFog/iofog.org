@@ -2,14 +2,16 @@
 
 `iofogctl` allows users to deploy sets of Microservices to Edge Compute Networks ('ECNs'). The various components of Microservices are specified within YAML files for `iofogctl` to consume.
 
-An Application is a set of Microservices working together to achieve one specific purpose.
+An application is a set of Microservices working together to achieve one specific purpose.
 
-An Application is defined by a YAML file. This file is passed as a parameter to the deploy command: `iofogctl deploy -f <path-to-yaml>`
+An application is defined by a YAML file. This file is passed as a parameter to the deploy command: `iofogctl deploy -f <path-to-yaml>`
 
-An Application YAML file definition can be retrieved with the describe command: `iofogctl describe application <NAME> [-o <path-to-yaml>]`
+An application YAML file definition can be retrieved with the describe command: `iofogctl describe application <NAME> [-o <path-to-yaml>]`
 
 Don't panic if this seems like a lot to digest, the [microservice yaml definition](#microservices) is explained in more details further down.
-The main take away is that an Application is defined by: a `name`, a set of `microservices` and a set of `routes`.
+The main take away is that an application is defined by: a `name`, a set of `microservices` and a set of `routes`.
+
+## Deploying an application
 
 ```yaml
 apiVersion: iofog.org/v2
@@ -74,11 +76,11 @@ spec:
 | microservices | List of Microservices. See Microservice section for more details.                                                                                                                                                           |
 | routes        | List of ioFog Routes. `From` and `To` use microservice name as identifiers. The microservices specified must be part of the application. When deploying an application, prefer this method to the microservice route field. |
 
-## Microservices
+### Microservices
 
 Microservices configuration and set up are defined using YAML files.
 
-Those YAML definitions can be used inside an Application YAML file, or by themselves when deploying a microservice to an existing Application: `iofogctl deploy microservice -f <path-to-microservice.yaml>`
+Those YAML definitions can be used inside an application YAML file, or by themselves when deploying a microservice to an existing application: `iofogctl deploy microservice -f <path-to-microservice.yaml>`
 
 A microservice YAML definition file can be retrieved using the describe command: `iofogctl describe microservice <NAME> [-o microservice.yaml]`
 
@@ -183,19 +185,44 @@ spec:
 | images.x86               | Image to be used on x86 ioFog Agents.                                                                                                                                                                |
 | images.arm               | Image to be used on ARM ioFog Agents.                                                                                                                                                                |
 | images.registry          | Either `local`, `remote`, or `registryID`. Remote will pull the image from Dockerhub, local will use the local cache of the ioFog Agent. RegistryID will use the specified registry.                 |
-| images.catalogId         | Catalog item ID to be used in lieu and place of the images and the registry. (see [catalog items](../microservices/microservice-registry-catalog.html))                                              |
+| images.catalogId         | Catalog item ID to be used in lieu and place of the images and the registry. (see [catalog items](../applications/microservice-registry-catalog.html))                                               |
 | config                   | User-defined arbitrary object to be passed to the microservice runtime as its configuration                                                                                                          |
 | container.rootHostAccess | Set to true if the container needs to be able to access the host. This will also set the network of the container to `host`                                                                          |
-| container.ports          | List of port mapping to be provided to the container running the microservice (See [public ports](../microservices/microservice-exposing.html) for a more detailed explanation of public ports)      |
+| container.ports          | List of port mapping to be provided to the container running the microservice (See [public ports](../applications/microservice-exposing.html) for a more detailed explanation of public ports)       |
 | container.volumes        | List of volume mapping to be provided to the container running the microservice                                                                                                                      |
 | container.env            | List of environment variables to be provided to the container running the microservice                                                                                                               |
 | container.commands       | List of arguments passed as CMD to the container runtime                                                                                                                                             |
 | application              | Unique identifier of the Application the microservice is part of                                                                                                                                     |
 | rebuild                  | Boolean instructing the ioFog Agent to rebuild the microservice container after update. Use this flag if you updated the content of the docker image but didn't change the image name and/or tag.    |
 
+## Using a template
+
+```yaml
+apiVersion: iofog.org/v2
+kind: Application # What are we deploying
+metadata:
+  name: health-care-wearable # Application name
+  namespace: default # (Optional) iofogctl namespace to use
+
+# Specifications of the application
+spec:
+  template:
+    name: template-name # Name of the template to use
+    variables:
+      - key: variable-name
+        value: variable-value # Any of string, number or boolean
+```
+
+| Field                   | Description                                                                       |
+| ----------------------- | --------------------------------------------------------------------------------- |
+| template.name           | Name of the [Application template](../reference-application-template.html) to use |
+| template.variables      | Array of variables specifications                                                 |
+| template.variables.key  | Variable key                                                                      |
+| template.variables.name | Variable value                                                                    |
+
 <aside class="notifications contribute">
   <h3><img src="/images/icos/ico-github.svg" alt="">See anything wrong with the document? Help us improve it!</h3>
-  <a href="https://github.com/eclipse-iofog/iofog.org/edit/develop/content/docs/2/reference-iofogctl/reference-application.md"
+  <a href="https://github.com/eclipse-iofog/iofog.org/edit/develop/content/docs/3.0/reference-iofogctl/reference-application.md"
     target="_blank">
     <p>Edit this page on Github!</p>
   </a>
